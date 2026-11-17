@@ -182,7 +182,7 @@ Namespace ID は秘密情報ではないので、リポジトリに書いて問�
 - `worker/index.js` の `WORKER_VERSION`
 - `public/app.js` の `APP_VERSION`
 
-画面右下に `v0.8.1 / api 0.8.1` と表示される。両者が食い違う場合は、
+画面右下に `v0.9.0 / api 0.9.0` と表示される。両者が食い違う場合は、
 ブラウザが古いJSをキャッシュしているか、デプロイが失敗している。
 不一致時は画面上部に警告が出る。
 
@@ -191,7 +191,7 @@ Namespace ID は秘密情報ではないので、リポジトリに書いて問�
 1. 2つの定数と `CHANGELOG.md` を更新してコミット
 2. Cloudflare のデプロイ完了を確認
 3. GitHub の Releases → Draft a new release
-4. Choose a tag に `v0.8.1` を入力して「Create new tag」
+4. Choose a tag に `v0.9.0` を入力して「Create new tag」
 5. 本文に CHANGELOG の該当節を貼って Publish
 
 タグを打っておくと、デプロイが壊れたときに動作していた時点のZIPをブラウザから取得できる。

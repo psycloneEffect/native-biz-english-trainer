@@ -10,7 +10,7 @@ const NO_KEY = "trainer-next-no";
 const CLEAR_ON_CLOSE_KEY = "trainer-clear-on-close";
 
 /** 画面側のバージョン。worker/index.js の WORKER_VERSION と対で更新する。 */
-const APP_VERSION = "0.8.1";
+const APP_VERSION = "0.9.0";
 
 // ---------- 連番 ----------
 function loadNo() {

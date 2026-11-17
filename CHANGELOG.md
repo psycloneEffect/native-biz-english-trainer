@@ -11,13 +11,15 @@
 
 ## [Unreleased]
 
+### 追加予定
+- Claude API 呼び出しのタイムアウト（課題3）
+
+## [0.9.0] - 2026-11-17
+
 ### 追加
 - 結果欄の「閉じる」ボタンの右横に「閉じたら入力をクリア」トグルを追加。ONのとき、
   「閉じる」でシチュエーション・つい言ってしまう表現・ネイティブならこう言う の3欄を消す。
   既定はOFFで、設定はブラウザ（localStorage `trainer-clear-on-close`）に保存する
-
-### 追加予定
-- Claude API 呼び出しのタイムアウト（課題3）
 
 ## [0.8.1] - 2026-10-27
 
@@ -151,7 +153,8 @@ workers.dev のサブドメインを変更したため、この版から公開UR
 - Claude Messages API + web_search（辞書4サイトに限定）による教材生成
 - Markdown のダウンロードと連番付与
 
-[Unreleased]: https://github.com/psycloneEffect/native-english-trainner/compare/v0.8.1...HEAD
+[Unreleased]: https://github.com/psycloneEffect/native-english-trainner/compare/v0.9.0...HEAD
+[0.9.0]: https://github.com/psycloneEffect/native-english-trainner/releases/tag/v0.9.0
 [0.8.1]: https://github.com/psycloneEffect/native-english-trainner/releases/tag/v0.8.1
 [0.8.0]: https://github.com/psycloneEffect/native-english-trainner/releases/tag/v0.8.0
 [0.7.2]: https://github.com/psycloneEffect/native-english-trainner/releases/tag/v0.7.2
