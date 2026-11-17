@@ -7,6 +7,7 @@ import { toMarkdown, safeTitle, pad3 } from "/shared/schema.js";
 const { useState, useRef, useMemo, useEffect } = React;
 const html = htm.bind(React.createElement);
 const NO_KEY = "trainer-next-no";
+const CLEAR_ON_CLOSE_KEY = "trainer-clear-on-close";
 
 /** 画面側のバージョン。worker/index.js の WORKER_VERSION と対で更新する。 */
 const APP_VERSION = "0.8.1";
@@ -22,6 +23,14 @@ function loadNo() {
 }
 function saveNo(n) {
   try { localStorage.setItem(NO_KEY, String(n)); } catch (e) { /* プライベートモード等 */ }
+}
+
+// ---------- 「閉じる」で入力をクリアするか（既定はOFF） ----------
+function loadClearOnClose() {
+  try { return localStorage.getItem(CLEAR_ON_CLOSE_KEY) === "1"; } catch (e) { return false; }
+}
+function saveClearOnClose(on) {
+  try { localStorage.setItem(CLEAR_ON_CLOSE_KEY, on ? "1" : "0"); } catch (e) { /* プライベートモード等 */ }
 }
 
 // ---------- エラー文言 ----------
@@ -69,6 +78,16 @@ function ClearButton(props) {
   if (!props.show) return null;
   return html`<button type="button" class="clear-btn" aria-label=${props.label + "を消す"}
     onClick=${(e) => { e.preventDefault(); props.onClear(); }}>✕</button>`;
+}
+
+/** オン/オフのトグルスイッチ。見た目はスイッチ、中身は role="switch" のチェックボックス */
+function Toggle(props) {
+  return html`<label class="toggle" title=${props.title || ""}>
+    <input type="checkbox" role="switch" checked=${props.checked} disabled=${props.disabled}
+      onChange=${(e) => props.onChange(e.target.checked)} />
+    <span class="track" aria-hidden="true"><span class="knob"></span></span>
+    <span class="toggle-label">${props.label}</span>
+  </label>`;
 }
 
 /** ログイン画面 */
@@ -149,7 +168,22 @@ function App() {
   const [authed, setAuthed] = useState(null); // null: 確認中
   // 残り回数。利用者は { client, total }、管理者は { admin: true, remaining }（null は無制限）
   const [quota, setQuota] = useState(null);
+  const [clearOnClose, setClearOnClose] = useState(loadClearOnClose);
   const ctlRef = useRef(null);
+
+  function changeClearOnClose(on) {
+    setClearOnClose(on);
+    saveClearOnClose(on);
+  }
+
+  function closeResult() {
+    setOutput(null);
+    if (clearOnClose) {
+      setSituation("");
+      setNg("");
+      setNative("");
+    }
+  }
 
   const canAsk = !busy && situation.trim() && ng.trim();
 
@@ -335,7 +369,10 @@ function App() {
       <div class="actions">
         <button onClick=${download}>Markdownをダウンロード</button>
         <button class="ghost" onClick=${ask} disabled=${!canAsk}>作り直す</button>
-        <button class="ghost" onClick=${() => setOutput(null)} disabled=${busy}>閉じる</button>
+        <button class="ghost" onClick=${closeResult} disabled=${busy}>閉じる</button>
+        <${Toggle} checked=${clearOnClose} onChange=${changeClearOnClose} disabled=${busy}
+          label="閉じたら入力をクリア"
+          title="ONにすると「閉じる」でシチュエーション・NG表現・ネイティブ表現を消します（設定はこのブラウザに保存）" />
       </div>
     </section>`}
     <footer class="ver">
