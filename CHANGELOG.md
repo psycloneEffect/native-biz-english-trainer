@@ -20,6 +20,12 @@
 - 結果欄の「閉じる」ボタンの右横に「閉じたら入力をクリア」トグルを追加。ONのとき、
   「閉じる」でシチュエーション・つい言ってしまう表現・ネイティブならこう言う の3欄を消す。
   既定はOFFで、設定はブラウザ（localStorage `trainer-clear-on-close`）に保存する
+- `tests/public/` に画面側モジュールのテストを追加（`node:test`、依存なし）。
+  `public/prefs.js` の設定の読み書きと、`public/shared/schema.js` の検証・Markdown 組み立てを確かめる
+
+### 変更
+- ファイル番号と「閉じたら入力をクリア」の保存処理を `public/app.js` から `public/prefs.js` に切り出した。
+  `app.js` は React の UMD 前提で `node:test` から読めないため。保存キー名と挙動は変えていない
 
 ## [0.8.1] - 2026-10-27
 

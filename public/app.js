@@ -2,36 +2,14 @@
  React は UMD、JSX の代わりに htm を使う。
  出力の構造と Markdown の体裁は shared/schema.js が正本。 */
 import { toMarkdown, safeTitle, pad3 } from "/shared/schema.js";
+import { loadNo, saveNo, loadClearOnClose, saveClearOnClose, inputsAfterClose } from "/prefs.js";
 // toMarkdown は Worker が markdown を返さなかった場合の保険として残す
 
 const { useState, useRef, useMemo, useEffect } = React;
 const html = htm.bind(React.createElement);
-const NO_KEY = "trainer-next-no";
-const CLEAR_ON_CLOSE_KEY = "trainer-clear-on-close";
 
 /** 画面側のバージョン。worker/index.js の WORKER_VERSION と対で更新する。 */
 const APP_VERSION = "0.9.0";
-
-// ---------- 連番 ----------
-function loadNo() {
-  try {
-    const v = parseInt(localStorage.getItem(NO_KEY), 10);
-    return Number.isFinite(v) && v > 0 && v <= 999 ? v : 1;
-  } catch (e) {
-    return 1;
-  }
-}
-function saveNo(n) {
-  try { localStorage.setItem(NO_KEY, String(n)); } catch (e) { /* プライベートモード等 */ }
-}
-
-// ---------- 「閉じる」で入力をクリアするか（既定はOFF） ----------
-function loadClearOnClose() {
-  try { return localStorage.getItem(CLEAR_ON_CLOSE_KEY) === "1"; } catch (e) { return false; }
-}
-function saveClearOnClose(on) {
-  try { localStorage.setItem(CLEAR_ON_CLOSE_KEY, on ? "1" : "0"); } catch (e) { /* プライベートモード等 */ }
-}
 
 // ---------- エラー文言 ----------
 const ERR = {
@@ -178,11 +156,10 @@ function App() {
 
   function closeResult() {
     setOutput(null);
-    if (clearOnClose) {
-      setSituation("");
-      setNg("");
-      setNative("");
-    }
+    const next = inputsAfterClose({ situation, ng, native }, clearOnClose);
+    setSituation(next.situation);
+    setNg(next.ng);
+    setNative(next.native);
   }
 
   const canAsk = !busy && situation.trim() && ng.trim();

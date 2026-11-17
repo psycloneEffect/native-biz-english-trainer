@@ -6,6 +6,7 @@
 public/index.html        画面。React は CDN から読み込むためビルド不要
 public/app.js            画面のロジック。JSXの代わりに htm を使用（ESモジュール）
 public/styles.css        スタイル
+public/prefs.js          画面の設定（ファイル番号、閉じたら入力をクリア）の保存。React に依存しない
 public/shared/schema.js  出力スキーマ・検証・Markdown組み立ての正本（Worker と画面で共有）
 worker/index.js          ルーティングとレスポンス整形
 worker/claude.js         Claude API の呼び出し、pause_turn の継続、JSON の取り出し
@@ -14,6 +15,8 @@ worker/input.js          リクエストの正規化と検証
 worker/auth.js           ログインの検証（共有／管理者）と、署名付きCookieによるセッション管理
 worker/quota.js          KVによる日次の実行回数制限
 wrangler.jsonc           Worker の設定
+tests/public/            画面側モジュールのテスト（node:test、依存なし）
+tests/helpers/           テスト用の道具（偽の localStorage など）
 ```
 
 リクエストの流れ:
