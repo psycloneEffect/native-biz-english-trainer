@@ -111,7 +111,19 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px soli
 pre.raw{margin:0;white-space:pre-wrap;word-break:break-word;font-size:.85rem;line-height:1.65;padding:14px 0;
   font-family:ui-monospace,Menlo,Consolas,monospace}
 
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+
+/* トグルスイッチ（「閉じる」の右横） */
+.toggle{position:relative;display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:.85rem;font-weight:700;color:var(--muted);user-select:none}
+.toggle input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+.toggle .track{position:relative;flex:0 0 40px;width:40px;height:22px;border-radius:99px;background:var(--line);transition:background .15s}
+.toggle .knob{position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--card);
+  box-shadow:0 1px 2px rgba(0,0,0,.2);transition:transform .15s}
+.toggle input:checked + .track{background:var(--leaf)}
+.toggle input:checked + .track .knob{transform:translateX(18px)}
+.toggle input:checked ~ .toggle-label{color:var(--ink)}
+.toggle input:focus-visible + .track{outline:3px solid var(--leaf);outline-offset:2px}
+.toggle input:disabled ~ *{opacity:.4;cursor:not-allowed}
 
 @media (max-width:540px){
   .wrap{padding:22px 16px 56px}
