@@ -157,10 +157,10 @@ workers.dev のサブドメインを変更したため、この版から公開UR
 - Claude Messages API + web_search（辞書4サイトに限定）による教材生成
 - Markdown のダウンロードと連番付与
 
-[Unreleased]: https://github.com/psycloneEffect/native-english-trainner/compare/v0.8.1...HEAD
-[0.8.1]: https://github.com/psycloneEffect/native-english-trainner/releases/tag/v0.8.1
-[0.8.0]: https://github.com/psycloneEffect/native-english-trainner/releases/tag/v0.8.0
-[0.7.2]: https://github.com/psycloneEffect/native-english-trainner/releases/tag/v0.7.2
-[0.7.1]: https://github.com/psycloneEffect/native-english-trainner/releases/tag/v0.7.1
-[0.7.0]: https://github.com/psycloneEffect/native-english-trainner/releases/tag/v0.7.0
-[0.5.0]: https://github.com/psycloneEffect/native-english-trainner/releases/tag/v0.5.0
+[Unreleased]: https://github.com/psycloneEffect/native-biz-english-trainer/compare/v0.8.1...HEAD
+[0.8.1]: https://github.com/psycloneEffect/native-biz-english-trainer/releases/tag/v0.8.1
+[0.8.0]: https://github.com/psycloneEffect/native-biz-english-trainer/releases/tag/v0.8.0
+[0.7.2]: https://github.com/psycloneEffect/native-biz-english-trainer/releases/tag/v0.7.2
+[0.7.1]: https://github.com/psycloneEffect/native-biz-english-trainer/releases/tag/v0.7.1
+[0.7.0]: https://github.com/psycloneEffect/native-biz-english-trainer/releases/tag/v0.7.0
+[0.5.0]: https://github.com/psycloneEffect/native-biz-english-trainer/releases/tag/v0.5.0
