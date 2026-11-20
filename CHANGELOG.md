@@ -8,8 +8,19 @@
 
 `0.5.0` 以降はリリースごとにタグを打つ。例外として `0.1.0` から `0.4.0` と `0.6.0` は
 開発中の区切りとしてさかのぼって記録したもので、対応するタグは存在しない。
+`v0.5.0` のタグが指すコミット（`0d89388`）は、版の定数が `0.4.0` のままになっている。
 
 ## [Unreleased]
+
+### 追加
+- PR ごとの版チェック（`.github/workflows/version-check.yml`）。2つの版の定数の一致、
+  CHANGELOG の節の有無、コードを変えたのに版を上げていないか、を確かめる
+- main に反映された版へのタグの自動付与と、MINOR / MAJOR の Release 下書きの自動作成
+  （`.github/workflows/release.yml`）。Workers Builds が成功したコミットにだけタグを付ける
+
+### 変更
+- README を利用者向けの使い方に書き直し、構成・デプロイ・設定・版の管理は
+  `docs/DEVELOPMENT.md` に移した
 
 ### 追加予定
 - Claude API 呼び出しのタイムアウト（課題3）
@@ -146,10 +157,10 @@ workers.dev のサブドメインを変更したため、この版から公開UR
 - Claude Messages API + web_search（辞書4サイトに限定）による教材生成
 - Markdown のダウンロードと連番付与
 
-[Unreleased]: https://github.com/psycloneEffect/native-english-trainner/compare/v0.8.1...HEAD
-[0.8.1]: https://github.com/psycloneEffect/native-english-trainner/releases/tag/v0.8.1
-[0.8.0]: https://github.com/psycloneEffect/native-english-trainner/releases/tag/v0.8.0
-[0.7.2]: https://github.com/psycloneEffect/native-english-trainner/releases/tag/v0.7.2
-[0.7.1]: https://github.com/psycloneEffect/native-english-trainner/releases/tag/v0.7.1
-[0.7.0]: https://github.com/psycloneEffect/native-english-trainner/releases/tag/v0.7.0
-[0.5.0]: https://github.com/psycloneEffect/native-english-trainner/releases/tag/v0.5.0
+[Unreleased]: https://github.com/psycloneEffect/native-biz-english-trainer/compare/v0.8.1...HEAD
+[0.8.1]: https://github.com/psycloneEffect/native-biz-english-trainer/releases/tag/v0.8.1
+[0.8.0]: https://github.com/psycloneEffect/native-biz-english-trainer/releases/tag/v0.8.0
+[0.7.2]: https://github.com/psycloneEffect/native-biz-english-trainer/releases/tag/v0.7.2
+[0.7.1]: https://github.com/psycloneEffect/native-biz-english-trainer/releases/tag/v0.7.1
+[0.7.0]: https://github.com/psycloneEffect/native-biz-english-trainer/releases/tag/v0.7.0
+[0.5.0]: https://github.com/psycloneEffect/native-biz-english-trainer/releases/tag/v0.5.0
